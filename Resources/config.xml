@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../../engine/Shopware/Components/Plugin/schema/config.xsd">
+    <elements>
+
+        <element type="button">
+            <name>defaultButton</name>
+            <label><![CDATA[<b>Allgemeine Einstellungen</b>]]></label>
+        </element>
+
+        <element type="textarea">
+            <name>csvFiles</name>
+            <label>Dateien</label>
+            <value>https://www.ostermann.de/sync/artikelmin-alle-artikel.csv</value>
+            <description>Bitte geben Sie alle .csv Dateien an, die für den Import genutzt werden. Eine .csv Datei pro Zeile. Die Artikelnummer muss in der ersten Spalte stehen. Die erste Zeile wird als Überschrift ignoriert.</description>
+        </element>
+
+    </elements>
+</config>

@@ -1,0 +1,12 @@
+{
+  "name": "ost/article-cleanup",
+  "license": "proprietary",
+  "type": "shopware-plugin",
+  "extra": {
+    "installer-name": "OstArticleCleanup"
+  },
+  "scripts": {
+    "test": "phpunit -c tests/ --colors=always",
+    "test-unit": "phpunit -c tests/phpunit_unit.xml --colors=always"
+  }
+}

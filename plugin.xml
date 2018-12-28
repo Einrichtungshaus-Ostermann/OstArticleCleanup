@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../engine/Shopware/Components/Plugin/schema/plugin.xsd">
+
+    <label>Artikel deaktivieren, die nicht im Import enthalten sind</label>
+    <version>1.0.0</version>
+    <copyright><![CDATA[Einrichtungshaus Ostermann GmbH & Co. KG]]></copyright>
+    <link>https://www.ostermann.de</link>
+    <author><![CDATA[Einrichtungshaus Ostermann GmbH & Co. KG]]></author>
+    <compatibility minVersion="5.5.0" />
+
+</plugin>

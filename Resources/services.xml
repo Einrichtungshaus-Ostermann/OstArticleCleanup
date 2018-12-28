@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+
+        <!-- configuration -->
+        <service id="ost_article_cleanup.configuration" class="OstFoundation\Services\ConfigurationService">
+            <factory service="ost_foundation.services.configuration_service" method="getConfig"/>
+            <argument type="string">OstArticleCleanup</argument>
+        </service>
+
+        <!-- commands -->
+        <service id="ost_article_cleanup.commands.deactivate_articles_command" class="OstArticleCleanup\Commands\DeactivateArticlesCommand">
+            <tag name="console.command" command="ost-article-cleanup:deactivate-articles"/>
+            <argument type="service" id="ost_article_cleanup.configuration"/>
+        </service>
+
+    </services>
+</container>
