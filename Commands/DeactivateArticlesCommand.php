@@ -62,11 +62,15 @@ class DeactivateArticlesCommand extends ShopwareCommand
             $content = file_get_contents($file);
 
             $articles = 0;
+            $i = 0;
 
             // split by \n and loop every line
             foreach (explode(PHP_EOL, $content) as $line) {
+                // always add
+                $i++;
+
                 // ignore first line
-                if ($articles === 1) {
+                if ($i === 1) {
                     // next
                     continue;
                 }

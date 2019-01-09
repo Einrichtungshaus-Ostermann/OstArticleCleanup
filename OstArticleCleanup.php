@@ -9,6 +9,9 @@
  * 1.0.0
  * - initial release
  *
+ * 1.0.1
+ * - fixed ignoring first line
+ *
  * @package   OstArticleCleanup
  *
  * @author    Eike Brandt-Warneke <e.brandt-warneke@ostermann.de>
