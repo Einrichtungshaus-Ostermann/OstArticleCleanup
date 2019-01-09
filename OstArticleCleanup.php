@@ -12,6 +12,9 @@
  * 1.0.1
  * - fixed ignoring first line
  *
+ * 1.0.2
+ * - fixed article deactivation for both article and detail record
+ *
  * @package   OstArticleCleanup
  *
  * @author    Eike Brandt-Warneke <e.brandt-warneke@ostermann.de>

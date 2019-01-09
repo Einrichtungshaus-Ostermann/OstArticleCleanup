@@ -100,7 +100,7 @@ class DeactivateArticlesCommand extends ShopwareCommand
         $unique = array_values($unique);
 
         // short output
-        $output->writeln('unique articles: ' . count($unique));
+        $output->writeln('unique articles within the .csv: ' . count($unique));
 
         // count currently active articles
         $query = '
@@ -111,10 +111,11 @@ class DeactivateArticlesCommand extends ShopwareCommand
         $activeArticles = (int) Shopware()->Db()->fetchOne($query);
 
         // output them
-        $output->writeln('active articles: ' . $activeArticles);
+        $output->writeln('active articles in the shop: ' . $activeArticles);
 
         // calculate the difference as percentage value
         $diff = round(((max(count($unique), $activeArticles) / min(count($unique), $activeArticles)) - 1) * 100, 2);
+        $diff = ($diff > 100) ? 100 : $diff;
 
         // output
         $output->writeln('difference: ' . $diff . '%');
@@ -123,7 +124,6 @@ class DeactivateArticlesCommand extends ShopwareCommand
         if ($diff > $this->maxDifference) {
             // stop processing
             $output->writeln('max difference of ' . $this->maxDifference . '% exceeded - abort further execution');
-
             return;
         }
 
@@ -155,6 +155,32 @@ class DeactivateArticlesCommand extends ShopwareCommand
                 ';
                 Shopware()->Db()->query($query, ['number' => $number]);
 
+                // ...
+                $query = "
+                    SELECT SUM(linkArticle.active)
+                    FROM s_articles_details AS baseArticle
+                        LEFT JOIN s_articles_details AS linkArticle
+                            ON baseArticle.articleID = linkArticle.articleID
+                    WHERE baseArticle.ordernumber = :number
+                ";
+                $activeDetails = (int) Shopware()->Db()->fetchOne($query, ['number' => $number]);
+
+                // even one detail still active?!
+                if ( $activeDetails == 0 )
+                {
+                    // set the main article as inactive
+                    $query = "
+                        UPDATE s_articles
+                        SET active = 0
+                        WHERE id IN (
+                            SELECT articleID
+                            FROM s_articles_details
+                            WHERE ordernumber = :number
+                        )
+                    ";
+                    Shopware()->Db()->query($query, ['number' => $number]);
+                }
+
                 // count it
                 array_push($deactivated, $number);
             }
@@ -167,6 +193,8 @@ class DeactivateArticlesCommand extends ShopwareCommand
         $progressBar->finish();
 
         // and final output
-        $output->writeln('articles deactivated: ' . implode(', ', $deactivated));
+        $output->writeln('');
+        $output->writeln('articles deactivated: ' . count($deactivated));
+        $output->writeln('first 20 deactivated articles: ' . implode(', ', ((count($deactivated) > 20) ? array_slice($deactivated, 0, 20) : $deactivated)));
     }
 }
