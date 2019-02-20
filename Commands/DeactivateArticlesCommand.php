@@ -33,7 +33,7 @@ class DeactivateArticlesCommand extends ShopwareCommand
      *
      * @var array
      */
-    private $maxDifference = 10;
+    private $maxDifference;
 
     /**
      * @param array $configuration
@@ -42,6 +42,7 @@ class DeactivateArticlesCommand extends ShopwareCommand
     {
         parent::__construct();
         $this->configuration = $configuration;
+        $this->maxDifference = (int) $configuration['maxDifference'];
     }
 
     /**

@@ -15,5 +15,12 @@
             <description>Bitte geben Sie alle .csv Dateien an, die für den Import genutzt werden. Eine .csv Datei pro Zeile. Die Artikelnummer muss in der ersten Spalte stehen. Die erste Zeile wird als Überschrift ignoriert.</description>
         </element>
 
+        <element type="text">
+            <name>maxDifference</name>
+            <label>Maximale Differenz</label>
+            <value>10</value>
+            <description>Die maximale Differenz an Artikeln in Prozent zwischen der Anzahl der Artikel innerhalb der .csv Datei(en) und der Anzahl der Artikel im Shop. Falls die Differenz über dem angegebenen Schwellenwert ist, dann wird eine Synchronisation nicht durchgeführt. Das hilft Fehler bei korrupten .csv Dateien zu vermeiden.</description>
+        </element>
+
     </elements>
 </config>

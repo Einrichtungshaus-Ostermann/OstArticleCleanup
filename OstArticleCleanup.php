@@ -15,6 +15,9 @@
  * 1.0.2
  * - fixed article deactivation for both article and detail record
  *
+ * 1.0.3
+ * - added maximum difference to the configuration
+ *
  * @package   OstArticleCleanup
  *
  * @author    Eike Brandt-Warneke <e.brandt-warneke@ostermann.de>
